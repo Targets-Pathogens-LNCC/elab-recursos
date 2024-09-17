@@ -4,7 +4,7 @@ Bem-vindos(as) ao repositório oficial da **II Escola Latino-Americana de Bioinf
 
 ## Sobre este repositório
 
-Este repositório contém todos os materiais referentes às atividades realizadas durante a II ELAB. Na pasta **`Atividades`**, você encontrará os materiais disponibilizados pelos palestrantes e instrutores ao longo do evento, que inclui palestras, minicursos e workshops.
+Este repositório contém todos os materiais referentes às atividades realizadas durante a II ELAB. Na pasta **`Atividades`**, você encontrará os materiais disponibilizados pelos palestrantes e instrutores ao longo do evento.
 
 ## Estrutura da pasta `Atividades`
 
