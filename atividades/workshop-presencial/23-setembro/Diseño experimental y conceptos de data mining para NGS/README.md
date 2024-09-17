@@ -1,4 +1,4 @@
-1. Diseño experimental y conceptos de data mining para NGS
+Diseño experimental y conceptos de data mining para NGS
 
     👨‍🏫 Palestrante: Elmer A. Fernandez
     🏫 Afiliação: DataLab, Departamento de Computación, FCEFyN, Universidad Nacional de Córdoba - Argentina
