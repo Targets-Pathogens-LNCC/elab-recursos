@@ -17,7 +17,6 @@
 - **🏫 Afiliação:** Fiocruz/IRR  
 - **🗓️ Data e Horário:** Segunda-feira, 16 de setembro, 11h-13h  
 - **Descrição:** Palestra focada em simulações que exemplificam como a amostragem e a aleatoriedade impactam a reprodutibilidade dos experimentos ômicos.
-
 - **[Acesse a apresentação aqui.](https://gabrielrfernandes.github.io/elab/assets/player/KeynoteDHTMLPlayer.html#1)**
 
 
@@ -29,5 +28,4 @@
 - **🏫 Afiliação:** Laboratório de Bioinformática, LNCC, Petrópolis, RJ  
 - **🗓️ Data e Horário:** Segunda-feira, 16 de setembro, 13h-15h  
 - **Descrição:** Breve abordagem estatística sobre experimentos de RNAseq, com foco em desenhos multifatoriais e modelos mistos para a análise de dados.
-- 
 ---
