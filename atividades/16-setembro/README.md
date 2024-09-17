@@ -11,6 +11,9 @@
 
 
 ---
+Aqui está o texto com o link formatado corretamente para o GitHub:
+
+---
 
 ### 2. **Simulações para mostrar efeito da amostragem, aleatoriedade e reprodutibilidade nos experimentos ômicos**
 
@@ -18,7 +21,13 @@
 - **🏫 Afiliação:** Fiocruz/IRR  
 - **🗓️ Data e Horário:** Segunda-feira, 16 de setembro, 11h-13h  
 - **Descrição:** Palestra focada em simulações que exemplificam como a amostragem e a aleatoriedade impactam a reprodutibilidade dos experimentos ômicos.
-- 
+
+- **[Acesse a apresentação aqui.](https://gabrielrfernandes.github.io/elab/assets/player/KeynoteDHTMLPlayer.html#1)**
+
+---
+
+Agora o link está formatado e pode ser acessado diretamente a partir do texto.
+
 ---
 
 ### 3. **Análises Estatísticas de experimentos de RNAseq: uma breve abordagem aos desenhos multifatoriais e aos modelos mistos**
