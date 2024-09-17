@@ -17,7 +17,7 @@
 - **🏫 Afiliação:** Fiocruz/IRR  
 - **🗓️ Data e Horário:** Segunda-feira, 16 de setembro, 11h-13h  
 - **Descrição:** Palestra focada em simulações que exemplificam como a amostragem e a aleatoriedade impactam a reprodutibilidade dos experimentos ômicos.
-- **[Acesse a apresentação aqui.](https://gabrielrfernandes.github.io/elab/assets/player/KeynoteDHTMLPlayer.html#1)**
+- **[Acesse a apresentação aqui.](https://gabrielrfernandes.github.io/elab/assets/player/KeynoteDHTMLPlayer.html#0)**
 
 
 ---
