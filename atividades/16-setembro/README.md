@@ -9,10 +9,6 @@
 - **🗓️ Data e Horário:** Segunda-feira, 16 de setembro, 9h-11h  
 - **Descrição:** Discussão sobre conceitos de design, análise e avaliação de experimentos ômicos, com foco em simulações que demonstram o efeito da amostragem, aleatoriedade e reprodutibilidade nesses tipos de experimentos.
 
-
----
-Aqui está o texto com o link formatado corretamente para o GitHub:
-
 ---
 
 ### 2. **Simulações para mostrar efeito da amostragem, aleatoriedade e reprodutibilidade nos experimentos ômicos**
@@ -24,9 +20,6 @@ Aqui está o texto com o link formatado corretamente para o GitHub:
 
 - **[Acesse a apresentação aqui.](https://gabrielrfernandes.github.io/elab/assets/player/KeynoteDHTMLPlayer.html#1)**
 
----
-
-Agora o link está formatado e pode ser acessado diretamente a partir do texto.
 
 ---
 
