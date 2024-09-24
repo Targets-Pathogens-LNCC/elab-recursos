@@ -1,0 +1,60 @@
+#!/bin/bash
+date
+# 1 - Criar as pastas fastq e fastqc
+mkdir fastq fastqc
+
+# 2 - Baixar a sequencia fastq do github do curso para a pasta fastq
+wget https://raw.githubusercontent.com/Targets-Pathogens-LNCC/elab-recursos/refs/heads/main/atividades/workshop-presencial/24-setembro/Pr%C3%A9-processamento%2C%20mapeamento%20e%20contagem%20de%20reads%20de%20RNA-Seq%20no%20genoma%20de%20refer%C3%AAncia/SRR10258261_{1..2}.fastq.gz -P fastq
+
+# 3 - Rodar o programa fastqc
+fastqc -t 4 fastq/SRR10258261_* -o fastqc
+
+# 4 - Visualizar o resultado do fastq
+firefox fastqc/*.html & 
+
+# 5 - fazer o QC usando o programa fastp
+mkdir fastq_trim
+fastp -w 4 --detect_adapter_for_pe --length_required 70 --cut_right --cut_right_window_size 5 --cut_right_mean_quality 20 --cut_front --cut_front_window_size 1 --cut_front_mean_quality 3 --n_base_limit 2 --dont_eval_duplication -i fastq/SRR10258261_1.fastq.gz -o fastq_trim/SRR10258261_1.trim.fastq.gz -I fastq/SRR10258261_2.fastq.gz -O fastq_trim/SRR10258261_2.trim.fastq.gz --html fastq_trim/fastp.html --json fastq_trim/fastp.json 2> fastq_trim/fastp.log
+
+# 5 - fazer o QC usando o programa trimmomatic (quem quiser)
+#mkdir fastq_trim
+#java -jar ~/Trimmomatic-0.39/trimmomatic-0.39.jar PE -threads 4 fastq/SRR10258261_1.fastq.gz fastq/SRR10258261_2.fastq.gz fastq_trim/SRR10258261_1.trim.fastq.gz fastq_trim/SRR10258261_1.trim.SE1.fastq.gz fastq_trim/SRR10258261_2.trim.fastq.gz fastq_trim/SRR10258261_2.trim.SE2.fastq.gz ILLUMINACLIP:../Trimmomatic-0.39/adapters/TruSeq2-PE.fa:2:30:10:2:True LEADING:3 TRAILING:3 SLIDINGWINDOW:5:20 MINLEN:70 -summary fastq_trim/summary.txt 2> fastq_trim/trimmo.log
+
+# 5 - Rodar o fastqc no output do qc
+mkdir fastqc_pos
+fastqc -t 4 fastq_trim/SRR10258261_* -o fastqc_pos
+
+# 6 - abrir os relatorios gerados pelo fastp
+cat fastq_trim/fastp.log
+firefox fastq_trim/fastp.html &
+
+
+# 7 - Baixar os arquivos fasta e gtf do cromossomo 1 do genoma do pig na pagina do ensembl v 112
+mkdir reference
+
+# Baixar os arquivos gft e fa do cromossomo 1
+wget https://ftp.ensembl.org/pub/release-112/gtf/sus_scrofa/Sus_scrofa.Sscrofa11.1.112.chr.gtf.gz -P reference
+wget https://ftp.ensembl.org/pub/release-112/fasta/sus_scrofa/dna/Sus_scrofa.Sscrofa11.1.dna.primary_assembly.1.fa.gz -P reference
+
+gunzip reference/Sus_scrofa.Sscrofa11.1.112.chr.gtf.gz
+gunzip reference/Sus_scrofa.Sscrofa11.1.dna.primary_assembly.1.fa.gz
+
+# 8 - Criar indexar o cromossomo 1 junto do o arquivo gtf
+STAR --runThreadN 4 --runMode genomeGenerate --genomeDir reference/index_STAR --genomeFastaFiles reference/Sus_scrofa.Sscrofa11.1.dna.primary_assembly.1.fa --sjdbGTFfile reference/Sus_scrofa.Sscrofa11.1.112.chr.gtf --sjdbOverhang 99 --genomeSAindexNbases 13
+
+
+# 9 - Mapear as reads contra a referencia
+STAR --runMode alignReads --genomeDir reference/index_STAR --runThreadN 4 --readFilesCommand gunzip -c --readFilesIn fastq_trim/SRR10258261_1.trim.fastq.gz fastq_trim/SRR10258261_2.trim.fastq.gz --outFileNamePrefix mappedReadsSTAR/SRR10258261_trim_ --outSAMtype BAM SortedByCoordinate --quantMode GeneCounts
+
+# 10 - visualizar o alinhamento bam
+samtools view mappedReadsSTAR/SRR10258261_trim_Aligned.sortedByCoord.out.bam > bam.txt 
+
+# 11 - rodar o multiqc
+multiqc fastqc fastq_trim mappedReadsSTAR
+firefox multiqc_report.html &
+
+# 12 - fazer a contagem de reads mapeads nos genes
+mkdir count
+htseq-count -f bam -r pos -t exon -i gene_id -s reverse -c count/SRR10258261_trim_ReadsPerGene.tsverGene.tsv mappedReadsSTAR/SRR10258261_trim_Aligned.sortedByCoord.out.bam reference/Sus_scrofa.Sscrofa11.1.112.chr.gtf
+
+date
